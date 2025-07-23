@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Horarios de Partidos de Fútbol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JS de Bootstrap (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body class="backPartidos">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="/assets/video/video.mp4" type="video/mp4" />
+        Tu navegador no soporta el video HTML5.
+    </video>
+    <header>
+        <div id="loader" class="loader"></div>
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+            <nav class="navmenu navbar navbar-expand-lg nav-color container-xl">
+                <div class="container-fluid">
+
+                    <!-- Logo a la izquierda -->
+                    <a class="navbar-brand" href="#">
+                        <img src="assets/img/Logo.png" alt="Logo" height="40">
+                    </a>
+
+                    <!-- Botón hamburguesa para móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Menú a la derecha -->
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+                        <ul class="navbar-nav mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Tabla de Posiciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/partidos">Partidos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/goleador">Goleador</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/reglas"><span>reglas</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="wrapper container my-5">
+        <h1 class="mb-4 text-center tituloPrincipal">Horarios de Partidos de Fútbol</h1>
+
+        <div class="row g-4" id="partidos">
+            <!-- Partido 1 -->
+            <div class="col-12">
+                <div class="match-card text-center">
+                    <div class="teams">
+                        <span><img src="/assets/img/Toluca.png" alt=""></span>
+                        <span>TEAM A</span>
+                        <span class="vs">VS</span>
+                        <span>TEAM B</span>
+                    </div>
+                    <div class="match-date">June 30, 2030 at 07:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Partido 2 -->
+            <div class="col-12">
+                <div class="match-card text-center">
+                    <div class="teams">
+                        <span>TEAM A</span>
+                        <span class="vs">VS</span>
+                        <span>TEAM B</span>
+                    </div>
+                    <div class="match-date">June 30, 2023 at 07:00 PM</div>
+                </div>
+            </div>
+
+            <!-- Repite más partidos aquí -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-4 text-center text-white">
+        <div class="container">
+            <p class="mb-1">© 2025 Torneo Champions League. Todos los derechos reservados.</p>
+            <p class="mb-0">
+                Desarrollado por Harold Méndez Méndez
+            </p>
+        </div>
+    </footer>
+    <script type="module" src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

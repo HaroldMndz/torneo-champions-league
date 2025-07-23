@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Subir Excel</title>
+</head>
+
+<body>
+    <h1>Subir archivo Excel</h1>
+    {% if mensaje %}
+        <p style="color: green;">{{ mensaje }}</p>
+    {% endif %}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="archivo" accept=".xlsx" required>
+        <button type="submit">Subir archivo</button>
+    </form>
+
+    <h3>Subir Horarios de Partidos</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="horarios" accept=".xlsx" required>
+        <button type="submit">Subir horarios</button>
+    </form>
+    <button><a href="/logout">Cerrar sesión</a></button>
+</body>
+
+</html>
