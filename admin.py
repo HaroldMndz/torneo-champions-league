@@ -7,10 +7,13 @@ import pandas as pd
 from datetime import datetime
 from babel.dates import format_datetime
 
-#Firebase
+#Firebase - Produccion
 firebase_creds = os.environ.get("FIREBASE_CREDENCIALES")
 cred_dict = json.loads(firebase_creds)
 cred = credentials.Certificate(cred_dict)
+
+#Firebase - Desarrollo
+#cred = credentials.Certificate("credenciales.json")
 
 
 firebase_admin.initialize_app(cred)
@@ -178,4 +181,4 @@ def partidos():
     return render_template('partidos.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
