@@ -1,13 +1,18 @@
+import os
 import firebase_admin
 from firebase_admin import firestore_async, credentials, firestore
 import openpyxl
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, json, render_template, request, redirect, session, url_for
 import pandas as pd
 from datetime import datetime
 from babel.dates import format_datetime
 
 #Firebase
-cred = credentials.Certificate("credenciales.json")
+firebase_creds = os.environ.get("FIREBASE_CREDENCIALES")
+cred_dict = json.loads(firebase_creds)
+cred = credentials.Certificate(cred_dict)
+
+
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
