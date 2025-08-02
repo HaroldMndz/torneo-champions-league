@@ -41,8 +41,8 @@ async function getEquipos() {
       const datos = doc.data();
 
       let clasePosicion = "";
-      if (index <= 3) clasePosicion = "zona-clasificacion"; // verde
-      else if (index >= 9) clasePosicion = "zona-riesgo";   // rojo
+      if (index <= 8) clasePosicion = "zona-clasificacion"; // verde
+      else if (index >= 24) clasePosicion = "zona-riesgo";   // rojo
       else clasePosicion = "zona-media";
 
       const fila = document.createElement("tr");
