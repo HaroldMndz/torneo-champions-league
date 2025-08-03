@@ -157,7 +157,7 @@ def procesar_jornadas(horarios):
             print(data)
 
             # Guardar en Firestore
-            doc_ref = db.collection("Partidos").document()
+            doc_ref = db.collection("Partidos").document(f"{jornada_num}_{equipo1}_{equipo2}")
             doc_ref.set(data)
 
         except Exception as e:
