@@ -79,7 +79,7 @@ async function getGoleadores() {
   const jornadaDocRef = doc(db, "Jornada", "jornada");
   const jornadaSnap = await getDoc(jornadaDocRef);
   const jornada_actual = jornadaSnap.exists() ? jornadaSnap.data().numero : 1;
-  if (jornada_actual > 4) {
+  if (jornada_actual > 6) {
     try {
       const goleadoresRef = collection(db, "Goleadores");
       const q = query(goleadoresRef,
