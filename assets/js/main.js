@@ -131,7 +131,7 @@ async function getJornada() {
     }
 
     const data = jornadaSnap.data();
-    jornada.innerText = `Jornada # ${data.numero || "Sin número"}`;
+    jornada.innerText = `Jornada # ${(data.numero-1) || "Sin número"}`;
 
   } catch (error) {
     console.error("Error al obtener la jornada:", error);
