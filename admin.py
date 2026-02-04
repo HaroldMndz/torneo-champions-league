@@ -67,7 +67,7 @@ def admin():
             archivo = request.files['horarios']
             if archivo.filename.endswith('.xlsx'):
                 try:
-                    procesar_jornadas(archivo)  # función que te pasé antes
+                    procesar_jornadas(archivo)
                     return render_template('admin.html', mensaje="Horarios cargados correctamente.")
                 except Exception as e:
                     return render_template('admin.html', error=f"Error al procesar horarios: {e}")
@@ -79,7 +79,7 @@ def admin():
 def gen_tabla(archivo):
     try:
         df = pd.read_excel(archivo, sheet_name='Tabla')
-        # Suponiendo que tu Excel tiene columnas como:
+        # Suponiendo que Excel tiene columnas como:
         # Equipo | J | G | E | P | GF | GC | D | Pts
         for _, fila in df.iterrows():
             data = {
