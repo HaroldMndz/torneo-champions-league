@@ -79,7 +79,7 @@ async function getGoleadores() {
   const jornadaDocRef = doc(db, "Jornada", "jornada");
   const jornadaSnap = await getDoc(jornadaDocRef);
   const jornada_actual = jornadaSnap.exists() ? jornadaSnap.data().numero : 1;
-  if (jornada_actual > 6) {
+  if (jornada_actual > 4) {
     try {
       const goleadoresRef = collection(db, "Goleadores");
       const q = query(goleadoresRef,
@@ -131,7 +131,7 @@ async function getJornada() {
     }
 
     const data = jornadaSnap.data();
-    jornada.innerText = `Jornada # ${(data.numero-1) || "Sin número"}`;
+    jornada.innerText = `Jornada # ${data.numero || "Sin número"}`;
 
   } catch (error) {
     console.error("Error al obtener la jornada:", error);
