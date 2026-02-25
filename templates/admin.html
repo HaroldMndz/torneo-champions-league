@@ -24,7 +24,28 @@
         <input type="file" name="horarios" accept=".xlsx" required>
         <button type="submit">Subir horarios</button>
     </form>
+
+    <h3>Jornada Actual: {{ jornada_actual }}</h3>
+    {% if mensjornada %}
+        <p style="color: green;">{{ mensjornada }}</p>
+    {% endif %}
+    {% if errorjor %}
+        <p style="color: red;">{{ errorjor }}</p>
+    {% endif %}
+    <form method="POST">
+        <input type="number" name="jornada" required>
+        <button type="submit" name="actualizar_jornada">Actualizar Jornada</button>
+    </form>
+
+    <h3>Eliminar partidos de la jornada(revisar si se esta en la jornada correcta)</h3>
+    <form method="POST">
+    <button type="submit" name="eliminar_jornada">
+        Eliminar partidos de la jornada actual 🗑️
+    </button>
+    </form>
+
     <button><a href="/logout">Cerrar sesión</a></button>
+
 </body>
 
 </html>

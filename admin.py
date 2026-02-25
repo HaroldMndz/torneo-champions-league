@@ -47,10 +47,58 @@ def login():
 def admin():
     if 'usuario' not in session:
         return redirect('/login')
+    
+    jornada_actual = obtener_jornada_actual()
 
     if request.method == 'POST':
+        # ACTUALIZAR JORNADA
+        if 'actualizar_jornada' in request.form:
+            nueva_jornada = int(request.form.get('jornada'))
+            try:
+                db.collection('Jornada').document('jornada').set({
+                    'numero': nueva_jornada
+                }, merge=True)
+
+                jornada_actual = obtener_jornada_actual()
+                return render_template(
+                    'admin.html',
+                    mensjornada='Jornada actualizada correctamente ✅',
+                    jornada_actual=jornada_actual
+                )
+            except Exception as e:
+                return render_template(
+                    'admin.html',
+                    errorjor=f'Error al actualizar jornada: {e}'
+                )
+        # ELIMINAR JORNADA        
+        elif 'eliminar_jornada' in request.form:
+            try:
+                jornada_actual = obtener_jornada_actual()
+
+                partidos_ref = db.collection("Partidos") \
+                    .where("jornada", "==", jornada_actual) \
+                    .stream()
+
+                contador = 0
+
+                for partido in partidos_ref:
+                    partido.reference.delete()
+                    contador += 1
+
+                return render_template(
+                    "admin.html",
+                    mensaje=f"{contador} partidos eliminados correctamente 🗑️",
+                    jornada_actual=jornada_actual
+                )
+
+            except Exception as e:
+                return render_template(
+                    "admin.html",
+                    error=f"Error al eliminar partidos: {e}",
+                    jornada_actual=jornada_actual
+                )
         # Verificar si se subió un archivo
-        if 'archivo' in request.files:
+        elif 'archivo' in request.files:
             archivo = request.files['archivo']
             if archivo.filename.endswith('.xlsx'):
                 try:
@@ -74,7 +122,9 @@ def admin():
             else:
                 return render_template('admin.html', error="Formato inválido para archivo de horarios.")
 
-    return render_template('admin.html')
+    # GET normal
+    jornada_actual = obtener_jornada_actual()
+    return render_template('admin.html', jornada_actual=jornada_actual)
 
 def gen_tabla(archivo):
     try:
@@ -162,6 +212,13 @@ def procesar_jornadas(horarios):
 
         except Exception as e:
             print(f"Error procesando fila {index + 2}: {e}")
+            
+def obtener_jornada_actual():
+    doc = db.collection('Jornada').document('jornada').get()
+    if doc.exists:
+        return doc.to_dict().get('numero', 1)
+    return 1
+
 
 @app.route('/logout')
 def logout():
@@ -181,4 +238,5 @@ def partidos():
     return render_template('partidos.html')
 
 if __name__ == '__main__':
+    #app.run(debug=True)  # Solo para desarrollo, no usar en producción
     app.run(host='0.0.0.0', port=5000)
